@@ -9,6 +9,8 @@ class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
@@ -21,6 +23,8 @@ class TransactionController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -29,6 +33,9 @@ class TransactionController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -37,6 +44,9 @@ class TransactionController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param  \App\Models\Transaction  $transaction
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show(Transaction $transaction)
     {
@@ -47,22 +57,32 @@ class TransactionController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Transaction  $transaction
+     * @return \Illuminate\Http\Response
      */
-    public function edit(string $id)
+    public function edit(Transaction $transaction)
     {
         //
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Transaction  $transaction
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Transaction $transaction)
     {
         //
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Transaction  $transaction
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Transaction $transaction)
     {
@@ -71,6 +91,12 @@ class TransactionController extends Controller
         return redirect()->route('transactions.index');
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $status
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStatus(Request $request, $id, $status)
     {
         $transaction = Transaction::findOrFail($id);

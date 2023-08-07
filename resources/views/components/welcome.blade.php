@@ -10,7 +10,7 @@
     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
         <div class="flex items-center">
             <div class="ml-3 text-xl font-semibold text-gray-900">
-                <a href="/dashboard/transaction">Transaction</a>
+                <a href="/dashboard/transactions">Transaction</a>
             </div>
         </div>
     </div>
