@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Midtrans\Notification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentNotification;
 
 class MidtransController extends Controller
 {
@@ -66,7 +68,11 @@ class MidtransController extends Controller
             } else if ($status == 'settlement') {
                 //
             } else if ($status == 'success') {
-                //
+                $user = $transaction->user; // Mengambil data user dari relasi di model Transaction
+                if ($user) {
+                    // Mengirimkan email dengan status dan order_id ke alamat email user
+                    Mail::to($user->email)->send(new PaymentNotification($status, $order_id));
+                }
             } else if ($status == 'capture' && $fraud == 'challenge') {
                 return response()->json([
                     'meta' => [

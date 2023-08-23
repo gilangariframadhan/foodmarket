@@ -31,6 +31,21 @@
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/email-notify" :active="request()->routeIs('dashboard/users')">
+                        {{ __('Notifikasi Email') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/send-notification" :active="request()->routeIs('dashboard/users')">
+                        {{ __('Notifikasi WhatsApps') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/dashboard/notifications" :active="request()->routeIs('dashboard/users')">
+                        {{ __('Notifikasi FCM') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

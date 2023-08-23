@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EmailNotificationController;
+use App\Http\Controllers\PushNotificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +45,12 @@ Route::prefix('dashboard')
 Route::get('midtrans/success', [MidtransController::class, 'success']);
 Route::get('midtrans/unfinish', [MidtransController::class, 'unfinish']);
 Route::get('midtrans/error', [MidtransController::class, 'error']);
+
+Route::get('send-notification', [NotificationController::class, 'showForm']);
+Route::post('send-notification', [NotificationController::class, 'sendNotification'])->name('send-notification');
+
+Route::get('/email-notify', [EmailNotificationController::class, 'index']);
+Route::post('/email-notify', [EmailNotificationController::class, 'send']);
+
+Route::get('/dashboard/notifications', [PushNotificationController::class, 'create'])->name('notifications.create');
+Route::post('/dashboard/notifications', [PushNotificationController::class, 'store'])->name('notifications.store');

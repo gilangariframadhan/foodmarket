@@ -37,6 +37,11 @@ return [
         'isProduction' => env('MIDTRANS_IS_PRODUCTION', true),
         'isSanitized' => env('MIDTRANS_IS_SANITIZED', false),
         'is3ds' => env('MIDTRANS_IS_3DS', false),
-    ]
+    ],
+    'twilio' => [
+        'sid' => env('TWILIO_ACCOUNT_SID'),
+        'token' => env('TWILIO_AUTH_TOKEN'),
+        'whatsapp_number' => env('TWILIO_WHATSAPP_NUMBER'),
+    ],
 
 ];

@@ -34,6 +34,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['password'] = bcrypt($request->input('password'));
 
         $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
 
@@ -67,9 +68,15 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        if ($request->file('profile_picture_path')) {
+        // Cek jika ada password dan itu tidak kosong
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->input('password')); // Hash the password
+        }
+
+        if ($request->file('profile_photo_path')) {
             $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
         }
+
         $user->update($data);
 
         return redirect()->route('users.index');
